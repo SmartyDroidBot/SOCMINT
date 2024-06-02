@@ -7,3 +7,9 @@ from django.template import loader
 
 def home(request):
     return render(request,'root/home.html')
+
+def twitter(request):
+    return render(request,'root/twitter.html')
+
+def reddit(request):
+    return render(request,'root/reddit.html')
