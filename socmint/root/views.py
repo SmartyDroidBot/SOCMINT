@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 from django.http import JsonResponse
-from root.reddit_api import fetch_hot_posts, search_posts, fetch_post_details
+from api.reddit_api import fetch_hot_posts, search_posts, fetch_post_details
 
 # Create your views here.
 
