@@ -45,6 +45,10 @@
             background-color: #6c757d;
             border: 1px solid #495057;
         }
+        .navbar-nav .nav-item img {
+            height: 20px; /* Adjust the height as needed */
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>
@@ -54,14 +58,40 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
+          <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="http://127.0.0.1:8000/home/twitter/">Twitter</a>
+                <a class="nav-link" href="{% url 'home' %}">
+                    <img src="https://img.icons8.com/ios-filled/50/ffffff/home.png" alt="Home"> Home
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="http://127.0.0.1:8000/home/reddit/">Reddit</a>
+                <a class="nav-link" href="http://127.0.0.1:8000/home/twitter/">
+                    <img src="https://img.icons8.com/ios-filled/50/ffffff/twitter.png" alt="Twitter"> Twitter
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://127.0.0.1:8000/home/reddit/">
+                    <img src="https://img.icons8.com/ios-filled/50/ffffff/reddit.png" alt="Reddit"> Reddit
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://127.0.0.1:8000/home/instagram/">
+                    <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram"> Instagram
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://127.0.0.1:8000/home/telegram/">
+                    <img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png" alt="Telegram"> Telegram
+                </a>
             </li>
             <!-- Add more nav links as needed -->
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <img src="https://img.icons8.com/ios-filled/50/ffffff/google-logo.png" alt="Google"> Login/Signup with Google
+                </a>
+            </li>
           </ul>
         </div>
       </nav>
