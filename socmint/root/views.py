@@ -6,10 +6,10 @@ from django.template import loader
 
 
 def home(request):
-    return render(request,'root/home.html')
+    return render(request,'home.html')
 
 def twitter(request):
-    return render(request,'root/twitter.html')
+    return render(request,'twitter.html')
 
 def reddit(request):
-    return render(request,'root/reddit.html')
+    return render(request,'reddit.html')
