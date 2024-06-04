@@ -1,3 +1,4 @@
-socmint/__pycache__/*
-root/__pycache__/*
-root/migrations/__pycache__/*
+.venv
+__pycache__
+root/__pycache__
+root/migrations/__pycache__
