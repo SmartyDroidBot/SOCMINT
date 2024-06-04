@@ -1,0 +1,15 @@
+text,label
+"There is a bomb in the building!",THREAT
+"Someone planted explosives in the vicinity.",THREAT
+"A cyber attack is imminent.",THREAT
+"Our system has been breached by hackers.",THREAT
+"We detected suspicious activity on the network.",THREAT
+"There is a potential threat to our cybersecurity.",THREAT
+"We received a bomb threat via email.",THREAT
+"Have a nice day!",NO_THREAT
+"Let's meet for coffee tomorrow.",NO_THREAT
+"The weather is great today.",NO_THREAT
+"I love reading books.",NO_THREAT
+"Let's go for a walk in the park.",NO_THREAT
+"No threats detected in the system.",NO_THREAT
+"Our security measures are working fine.",NO_THREAT

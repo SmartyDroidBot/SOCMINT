@@ -2,6 +2,7 @@ import spacy
 from sklearn import svm
 import numpy as np
 import joblib
+import pandas as pd
 
 # Load the transformer-based spaCy model
 nlp = spacy.load("en_core_web_trf")
@@ -11,39 +12,10 @@ class Category:
     THREAT = "THREAT"
     NO_THREAT = "NO_THREAT"
 
-# Training data
-train_x = [
-    "There is a bomb in the building!",
-    "Someone planted explosives in the vicinity.",
-    "A cyber attack is imminent.",
-    "Our system has been breached by hackers.",
-    "We detected suspicious activity on the network.",
-    "There is a potential threat to our cybersecurity.",
-    "We received a bomb threat via email.",
-    "Have a nice day!",
-    "Let's meet for coffee tomorrow.",
-    "The weather is great today.",
-    "I love reading books.",
-    "Let's go for a walk in the park.",
-    "No threats detected in the system.",
-    "Our security measures are working fine."
-]
-train_y = [
-    Category.THREAT,
-    Category.THREAT,
-    Category.THREAT,
-    Category.THREAT,
-    Category.THREAT,
-    Category.THREAT,
-    Category.THREAT,
-    Category.NO_THREAT,
-    Category.NO_THREAT,
-    Category.NO_THREAT,
-    Category.NO_THREAT,
-    Category.NO_THREAT,
-    Category.NO_THREAT,
-    Category.NO_THREAT
-]
+# Read training data from CSV file
+data = pd.read_csv('training_data.csv')
+train_x = data['text'].tolist()
+train_y = data['label'].tolist()
 
 # Function to get average token vectors for a document
 def get_doc_vector(doc):
