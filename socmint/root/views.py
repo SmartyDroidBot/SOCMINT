@@ -13,3 +13,7 @@ def twitter(request):
 
 def reddit(request):
     return render(request,'reddit.html')
+def reddit(request):
+    return render(request,'telegram.html')
+def reddit(request):
+    return render(request,'instagram.html')
