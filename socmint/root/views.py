@@ -7,13 +7,11 @@ from django.template import loader
 
 def home(request):
     return render(request,'home.html')
-
 def twitter(request):
     return render(request,'twitter.html')
-
 def reddit(request):
     return render(request,'reddit.html')
-def reddit(request):
+def telegram(request):
     return render(request,'telegram.html')
-def reddit(request):
+def instagram(request):
     return render(request,'instagram.html')
