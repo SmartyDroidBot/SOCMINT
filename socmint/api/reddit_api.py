@@ -1,11 +1,14 @@
 import praw
 import prawcore
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 def initialize():
     # Reddit API credentials
-    CLIENT_ID = 'Bwo7jLmeITYT6k25LOxf_Q'
-    CLIENT_SECRET = 'hkbQ49eBM_1iZ6Hdi4wB5dUTAOvvaw'
-    USER_AGENT = 'socmint by u/doremon0213'
+    CLIENT_ID = os.getenv("CLIENT_ID")
+    CLIENT_SECRET = os.getenv("CLIENT_SECRET")
+    USER_AGENT = os.getenv("USER_AGENT")
 
     # Authenticate with Reddit API
     reddit = praw.Reddit(client_id=CLIENT_ID,
