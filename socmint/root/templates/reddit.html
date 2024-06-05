@@ -1,41 +1,47 @@
 {% extends 'base.html' %}
 
+{% block title %}Reddit Content - Socmint{% endblock %}
+
 {% block content %}
-<div class="content">
-    <h1>Reddit Content</h1>
-    <form id="reddit-form" method="get" action="/reddit-api/">
-        <label for="subreddit_name">Subreddit Name:</label>
-        <input type="text" id="subreddit_name" name="subreddit_name"><br><br>
-        
-        <label for="keyword">Keyword:</label>
-        <input type="text" id="keyword" name="keyword"><br><br>
-        
-        <label for="post_id">Post ID:</label>
-        <input type="text" id="post_id" name="post_id"><br><br>
-        
-        <input type="submit" value="Submit">
-    </form>
 
-    <div id="results">
-        <!-- Results will be displayed here -->
+
+<div class="container mt-5">
+    <div class="card bg-dark text-light p-4">
+        <h1 class="mb-4">Reddit Content</h1>
+        <form id="reddit-form" method="get" action="/reddit-api/">
+            <div class="form-group">
+                <input type="text" id="subreddit_name" name="subreddit_name" class="form-control bg-dark text-light border-secondary" placeholder="Subreddit Name">
+            </div>
+            <div class="form-group">
+                <input type="text" id="keyword" name="keyword" class="form-control bg-dark text-light border-secondary" placeholder="Keyword">
+            </div>
+            <div class="form-group">
+                <input type="text" id="post_id" name="post_id" class="form-control bg-dark text-light border-secondary" placeholder="Post ID">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <div id="results" class="mt-4" style="color: white;">
+            <!-- Results will be displayed here -->
+        </div>
     </div>
-
-    <script>
-        document.getElementById('reddit-form').onsubmit = function(event) {
-            event.preventDefault();
-
-            var form = event.target;
-            var formData = new FormData(form);
-            var params = new URLSearchParams(formData).toString();
-
-            fetch('/reddit-api/?' + params)
-                .then(response => response.json())
-                .then(data => {
-                    var resultsDiv = document.getElementById('results');
-                    resultsDiv.innerHTML = JSON.stringify(data, null, 2);
-                })
-                .catch(error => console.error('Error:', error));
-        };
-    </script>
 </div>
+
+<script>
+    document.getElementById('reddit-form').onsubmit = function(event) {
+        event.preventDefault();
+
+        var form = event.target;
+        var formData = new FormData(form);
+        var params = new URLSearchParams(formData).toString();
+
+        fetch('/reddit-api/?' + params)
+            .then(response => response.json())
+            .then(data => {
+                var resultsDiv = document.getElementById('results');
+                resultsDiv.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            })
+            .catch(error => console.error('Error:', error));
+    };
+</script>
 {% endblock %}
