@@ -1,0 +1,66 @@
+<!-- socmint/root/templates/reddit_results.html -->
+
+{% extends 'reddit.html' %}
+
+{% block results %}
+
+    <h2>Results</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Post Title</th>
+                <th>Label</th>
+                <th>Subreddit</th>
+                <th>Accuracy</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in results %}
+                <tr>
+                    <td><a href="{{ result.url }}">{{ result.title }}</a></td>
+                    <td>{{ result.label }}</td>
+                    <td><a href="https://www.reddit.com/r/{{ result.subreddit }}">{{ result.subreddit }}</a></td>
+                    <td>{{ result.accuracy|floatformat:2 }}%</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- Add to the end of the body tag in reddit_results.html -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Prepare data for pie charts
+    const labels = ["Banking Fraud", "Terrorist Attack", "Life Threat", "Online Scams", "Information Leakage", "Casual Conversation"];
+    const data = {
+        labels: labels,
+        datasets: [
+            {
+                label: 'Post Titles',
+                data: {{ titles_data }},
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FF6384', '#36A2EB', '#FFCE56'],
+                hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FF6384', '#36A2EB', '#FFCE56']
+            },
+            {
+                label: 'Post Descriptions',
+                data: {{ descriptions_data }},
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FF6384', '#36A2EB', '#FFCE56'],
+                hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FF6384', '#36A2EB', '#FFCE56']
+            },
+            {
+                label: 'Comments',
+                data: {{ comments_data }},
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FF6384', '#36A2EB', '#FFCE56'],
+                hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FF6384', '#36A2EB', '#FFCE56']
+            }
+        ]
+    };
+
+    const config = {
+        type: 'doughnut',
+        data: data,
+    };
+
+    var ctx = document.getElementById('myPieChart').getContext('2d');
+    new Chart(ctx, config);
+</script>
+
+{% endblock %}

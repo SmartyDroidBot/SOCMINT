@@ -1,16 +1,25 @@
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
-
+import os
 
 # Use predict(string) to get output as tensor
-def predict (text,model_name="api/Kaviel-threat-text-classifier/"):
-    # Load the model and tokenizer
+def predict(text):
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    model_name = os.path.join(current_dir, "Kaviel-threat-text-classifier")
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForSequenceClassification.from_pretrained(model_name)
 
+    # Check if GPU is available
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    # Move model to GPU if available
+    model.to(device)
 
     # Tokenize and prepare input
     inputs = tokenizer(text, return_tensors="pt")
+
+    # Move input tensors to the same device as the model
+    inputs = {key: value.to(device) for key, value in inputs.items()}
 
     # Get model predictions
     with torch.no_grad():
@@ -22,10 +31,3 @@ def predict (text,model_name="api/Kaviel-threat-text-classifier/"):
 
     # Return predictions
     return predictions
-
-# Use predictBin(String) to get a direct Threat(True) or Not a threat (False) output
-def predictBin(text,model_name="api/Kaviel-threat-text-classifier/"):
-    tensor=predict(text,model_name)
-    values = tensor[0]
-    max_index = torch.argmax(values).item()
-    return max_index < 5

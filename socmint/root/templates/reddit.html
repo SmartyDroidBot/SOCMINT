@@ -1,47 +1,30 @@
+<!-- socmint/root/templates/reddit.html -->
+
 {% extends 'base.html' %}
 
-{% block title %}Reddit Content - Socmint{% endblock %}
-
 {% block content %}
-
-
-<div class="container mt-5">
-    <div class="card bg-dark text-light p-4">
-        <h1 class="mb-4">Reddit Content</h1>
-        <form id="reddit-form" method="get" action="/reddit-api/">
-            <div class="form-group">
-                <input type="text" id="subreddit_name" name="subreddit_name" class="form-control bg-dark text-light border-secondary" placeholder="Subreddit Name">
-            </div>
-            <div class="form-group">
-                <input type="text" id="keyword" name="keyword" class="form-control bg-dark text-light border-secondary" placeholder="Keyword">
-            </div>
-            <div class="form-group">
-                <input type="text" id="post_id" name="post_id" class="form-control bg-dark text-light border-secondary" placeholder="Post ID">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-
-        <div id="results" class="mt-4" style="color: white;">
-            <!-- Results will be displayed here -->
+    <h2>Reddit Search</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="keywords">Keywords/Phrases</label>
+            <input type="text" class="form-control" id="keywords" name="keywords" required>
         </div>
+        <div class="form-group">
+            <label for="subreddit">Subreddit</label>
+            <input type="text" class="form-control" id="subreddit" name="subreddit" placeholder="r/">
+        </div>
+        <div class="form-group">
+            <label for="limit">Limit Search Results to</label>
+            <input type="number" class="form-control" id="limit" name="limit" value="10">
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="search_comments" name="search_comments">
+            <label class="form-check-label" for="search_comments">Search Comments</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <div id="results">
+        {% block results %}{% endblock %}
     </div>
-</div>
-
-<script>
-    document.getElementById('reddit-form').onsubmit = function(event) {
-        event.preventDefault();
-
-        var form = event.target;
-        var formData = new FormData(form);
-        var params = new URLSearchParams(formData).toString();
-
-        fetch('/reddit-api/?' + params)
-            .then(response => response.json())
-            .then(data => {
-                var resultsDiv = document.getElementById('results');
-                resultsDiv.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
-            })
-            .catch(error => console.error('Error:', error));
-    };
-</script>
 {% endblock %}
