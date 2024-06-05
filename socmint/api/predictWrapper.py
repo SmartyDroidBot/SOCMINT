@@ -34,5 +34,5 @@ def predictBin(text):
 #Running test inputs
 test_positive="I am going to bomb the university"
 test_negative="I am in a good mood today"
-print("Positive test result : ",predictBin(test_positive))
-print("Negative test result : ",predictBin(test_negative))
+#print("Positive test result : ",predictBin(test_positive))
+#print("Negative test result : ",predictBin(test_negative))
