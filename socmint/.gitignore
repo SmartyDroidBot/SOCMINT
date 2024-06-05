@@ -1,4 +1,61 @@
-.venv
-__pycache__
-root/__pycache__
-root/migrations/__pycache__
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+__pycache__/
+
+# If you are using Django Debug Toolbar
+debug_toolbar/*
+
+# Django static files
+staticfiles/
+
+# Django media files
+media/
+
+# Local environment settings
+.env
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# Database files
+*.sqlite3
+db.sqlite3
+
+# VS Code settings
+.vscode/
+
+# PyCharm settings
+.idea/
+
+# macOS files
+.DS_Store
+
+# JetBrains IDEs settings
+*.iml
+.idea/
+
+# Backup files
+*.bak
+*.swp
+
+# Caches and logs
+*.log
+*.cache
+*.backup
+
+# Exclude all __pycache__ directories in the entire project
+**/__pycache__/
+
+# Specific directories for your Django project named socmint
+socmint/__pycache__/
+socmint/root/__pycache__/
