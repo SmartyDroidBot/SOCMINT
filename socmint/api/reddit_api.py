@@ -68,8 +68,11 @@ def fetch_post_details(post_id):
         # Fetch and add top-level comments to the details (optional)
         submission.comments.replace_more(limit=0)
         comments = []
-        for top_level_comment in submission.comments:
+        for i, top_level_comment in enumerate(submission.comments):
+            if i >= 5:
+                break
             comments.append({
+                "Comment Author": str(top_level_comment.author),
                 "Comment Body": top_level_comment.body,
             })
         details["Comments"] = comments
@@ -87,16 +90,18 @@ def fetch_post_details(post_id):
 
 if __name__ == '__main__':
     # Example usage of search_posts
-    keyword = 'snacks'
+    #keyword = 'I will bomb'
+    keyword='snacks'
     posts = search_posts(keyword, limit=1)
     print("Search Results (Title: ID):")
     print(posts)
+    print(fetch_post_details(posts['I created a table of volume-friendly snacks to help me choose snacks']))
 
     # Example usage of fetch_post_details
-    if posts:
-        first_post_id = next(iter(posts.values()))
-        post_details = fetch_post_details(first_post_id)
-        print("\nPost Details:")
-        print(post_details)
-        print("\nPost URL:")
-        print(post_details["URL"])
+    #if posts:
+     #   first_post_id = next(iter(posts.values()))
+      #  post_details = fetch_post_details(first_post_id)
+       # print("\nPost Details:")
+        #print(post_details)
+        #print("\nPost URL:")
+        #print(post_details["URL"])

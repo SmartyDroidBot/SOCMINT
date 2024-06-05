@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.template import loader
 from django.http import JsonResponse
 from api.reddit_api import fetch_hot_posts, search_posts, fetch_post_details
+#from api.predictWrapper import predict,predictBin
+#from api.filter_predict import filter_malicous_keywords
 
 # Create your views here.
 
@@ -30,6 +32,8 @@ def reddit_api_view(request):
     
     if keyword:
         data['search_results'] = search_posts(keyword)
+        #y=predictBin("hello")
+        #data['search_results']=filter_malicous_keywords(data['search_results'])
     
     if post_id:
         data['post_details'] = fetch_post_details(post_id)
