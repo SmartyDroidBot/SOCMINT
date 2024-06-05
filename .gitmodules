@@ -1,0 +1,3 @@
+[submodule "socmint/api/Kaviel-threat-text-classifier"]
+	path = socmint/api/Kaviel-threat-text-classifier
+	url = https://huggingface.co/HiddenKise/Kaviel-threat-text-classifier.git
