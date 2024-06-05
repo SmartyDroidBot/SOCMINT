@@ -7,5 +7,4 @@ urlpatterns = [
     path('reddit/',views.reddit,name='reddit'),
     path('telegram/',views.telegram,name='telegram'),
     path('instagram/',views.instagram,name='instagram'),
-    path('reddit-api/', views.reddit_api_view, name='reddit_api_view'),
 ]
