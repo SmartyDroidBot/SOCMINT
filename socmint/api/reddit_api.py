@@ -61,14 +61,8 @@ def fetch_post_details(post_id):
         submission = reddit.submission(id=post_id)
         details = {
             "Title": submission.title,
-            "Author": str(submission.author),
-            "Score": submission.score,
-            "Upvote Ratio": submission.upvote_ratio,
-            "Number of Comments": submission.num_comments,
             "URL": submission.url,
-            "Selftext": submission.selftext,
-            "Subreddit": str(submission.subreddit),
-            "Created": submission.created_utc,
+            "Description": submission.selftext,
         }
 
         # Fetch and add top-level comments to the details (optional)
@@ -76,9 +70,7 @@ def fetch_post_details(post_id):
         comments = []
         for top_level_comment in submission.comments:
             comments.append({
-                "Comment Author": str(top_level_comment.author),
                 "Comment Body": top_level_comment.body,
-                "Comment Score": top_level_comment.score
             })
         details["Comments"] = comments
 
