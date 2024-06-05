@@ -1,4 +1,4 @@
-```
+
 # SOCMINT (Social Media Intelligence) Django App
 
 SOCMINT (Social Media Intelligence) is a Django web application designed to gather and analyze social media data from platforms like Reddit, Twitter, Instagram, and Telegram. It utilizes machine learning models to classify and analyze social media content for various purposes, such as identifying potential threats, monitoring trends, and extracting insights.
