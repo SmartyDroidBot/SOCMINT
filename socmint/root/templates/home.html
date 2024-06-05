@@ -1,111 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Socmint{% endblock %}</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <style>
-        body {
-            background-color: #1b1b1b;
-            color: #ffffff;
-        }
-        .navbar, .navbar-brand {
-            background-color: #000000;
-            color: #ffffff;
-        }
-        .navbar-dark .navbar-nav .nav-link {
-            color: rgba(255, 255, 255, 0.75);
-        }
-        .navbar-dark .navbar-nav .nav-link:hover {
-            color: rgba(255, 255, 255, 1);
-        }
-        .search-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 60vh; /* Adjust the height as needed */
-        }
-        .form-inline {
-            display: flex;
-            width: 50%; /* Adjust width as needed */
-        }
-        .form-control {
-            flex: 1;
-            background-color: #343a40;
-            border: 1px solid #495057;
-            color: #ffffff;
-        }
-        .btn {
-            background-color: #495057;
-            border: 1px solid #6c757d;
-            color: #ffffff;
-        }
-        .btn:hover {
-            background-color: #6c757d;
-            border: 1px solid #495057;
-        }
-        .navbar-nav .nav-item img {
-            height: 20px; /* Adjust the height as needed */
-            margin-right: 5px;
-        }
-    </style>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand" href="{% url 'home' %}">Socmint</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'home' %}">
-                    <img src="https://img.icons8.com/ios-filled/50/ffffff/home.png" alt="Home"> Home
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'twitter' %}">
-                    <img src="https://img.icons8.com/ios-filled/50/ffffff/twitter.png" alt="Twitter"> Twitter
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'reddit' %}">
-                    <img src="https://img.icons8.com/ios-filled/50/ffffff/reddit.png" alt="Reddit"> Reddit
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'instagram' %}">
-                    <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram"> Instagram
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'telegram' %}">
-                    <img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png" alt="Telegram"> Telegram
-                </a>
-            </li>
-            <!-- Add more nav links as needed -->
-          </ul>
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <img src="https://img.icons8.com/ios-filled/50/ffffff/google-logo.png" alt="Google"> Login/Signup with Google
-                </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    <div class="search-container">
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
-    <div class="container">
-        {% block content %}{% endblock %}
-    </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Home - Socmint{% endblock %}
+
+{% block content %}
+<div class="search-container">
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</div>
+{% endblock %}

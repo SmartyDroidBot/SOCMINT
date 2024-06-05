@@ -1,0 +1,56 @@
+body {
+    background-color: #1b1b1b;
+    color: #ffffff;
+}
+
+.navbar,
+.navbar-brand {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    /* Adjust the height as needed */
+}
+
+.form-inline {
+    display: flex;
+    width: 50%;
+    /* Adjust width as needed */
+}
+
+.form-control {
+    flex: 1;
+    background-color: #343a40;
+    border: 1px solid #495057;
+    color: #ffffff;
+}
+
+.btn {
+    background-color: #495057;
+    border: 1px solid #6c757d;
+    color: #ffffff;
+}
+
+.btn:hover {
+    background-color: #6c757d;
+    border: 1px solid #495057;
+}
+
+.navbar-nav .nav-item img {
+    height: 20px;
+    /* Adjust the height as needed */
+    margin-right: 5px;
+}
