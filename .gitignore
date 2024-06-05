@@ -60,3 +60,7 @@ db.sqlite3
 socmint/__pycache__/
 socmint/root/__pycache__/
 socmint/api/__pycache__/
+socmint/socmint/__pycache__/__init__.cpython-312.pyc
+socmint/socmint/__pycache__/settings.cpython-312.pyc
+socmint/socmint/__pycache__/urls.cpython-312.pyc
+socmint/socmint/__pycache__/wsgi.cpython-312.pyc
