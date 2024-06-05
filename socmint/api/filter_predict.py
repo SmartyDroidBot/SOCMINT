@@ -1,7 +1,7 @@
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
-from changes.predictWrapper import predict,predictBin
-from changes.reddit_api import initialize,fetch_post_details
+from predictWrapper import predict,predictBin
+from reddit_api import initialize,fetch_post_details
 
 def filter_malicous_keywords(posts):
     malicous_posts={}
