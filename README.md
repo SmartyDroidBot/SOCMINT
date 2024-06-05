@@ -15,7 +15,7 @@ SOCMINT (Social Media Intelligence) is a Django web application designed to gath
 1. Clone the repository:
 
 ```
-git clone https://github.com/SmartyDroid/socmint.git
+git clone https://github.com/SmartyDroidBot/socmint.git
 cd socmint
 ```
 
@@ -83,6 +83,7 @@ Contributions are welcome! If you'd like to contribute to this project, please f
 ## Credits
 
 - Model credits: [HiddenKise/Kaviel-threat-text-classifier](https://huggingface.co/HiddenKise/Kaviel-threat-text-classifier)
+- Reddit API: praw
 
 ## License
 
