@@ -59,3 +59,4 @@ db.sqlite3
 # Specific directories for your Django project named socmint
 socmint/__pycache__/
 socmint/root/__pycache__/
+socmint/api/__pycache__/
