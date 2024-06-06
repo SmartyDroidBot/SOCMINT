@@ -69,7 +69,8 @@ def process_reddit_search(keywords, subreddit, limit, search_comments):
         label = labels[label_index]
         
         # Omit Casual Conversation results
-        if label != "Casual Conversation":
+        #if label != "Casual Conversation":
+        if label:
             accuracy = prediction[0][label_index].item()
             post_data['label'] = label
             post_data['accuracy'] = accuracy

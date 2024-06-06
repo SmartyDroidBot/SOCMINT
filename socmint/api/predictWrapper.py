@@ -1,4 +1,4 @@
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
+from transformers import AutoTokenizer, AutoModelForSequenceClassification, PretrainedConfig
 import torch
 import os
 
@@ -6,6 +6,7 @@ import os
 def predict(text):
     current_dir = os.path.dirname(os.path.abspath(__file__))
     model_name = os.path.join(current_dir, "Kaviel-threat-text-classifier")
+    
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForSequenceClassification.from_pretrained(model_name)
 
@@ -16,7 +17,7 @@ def predict(text):
     model.to(device)
 
     # Tokenize and prepare input
-    inputs = tokenizer(text, return_tensors="pt")
+    inputs = tokenizer(text, return_tensors="pt", max_length=512, padding='max_length', truncation=True)
 
     # Move input tensors to the same device as the model
     inputs = {key: value.to(device) for key, value in inputs.items()}
@@ -28,6 +29,8 @@ def predict(text):
     # Process outputs (assuming binary classification)
     logits = outputs.logits
     predictions = torch.sigmoid(logits)
+    
+    print(predictions)
 
     # Return predictions
     return predictions
