@@ -3,64 +3,69 @@
 {% extends 'reddit.html' %}
 
 {% block results %}
-
     <h2>Results</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Post Title</th>
-                <th>Label</th>
-                <th>Subreddit</th>
-                <th>Accuracy</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for result in results %}
+    {% if no_results %}
+        <p>No valid results found.</p>
+    {% else %}
+        <table class="table">
+            <thead>
                 <tr>
-                    <td><a href="{{ result.url }}">{{ result.title }}</a></td>
-                    <td>{{ result.label }}</td>
-                    <td><a href="https://www.reddit.com/r/{{ result.subreddit }}">{{ result.subreddit }}</a></td>
-                    <td>{{ result.accuracy|floatformat:2 }}%</td>
+                    <th>Post Title</th>
+                    <th>Label</th>
+                    <th>Subreddit</th>
+                    <th>Accuracy</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <!-- Add to the end of the body tag in reddit_results.html -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    // Prepare data for pie charts
-    const labels = ["Banking Fraud", "Terrorist Attack", "Life Threat", "Online Scams", "Information Leakage", "Casual Conversation"];
-    const data = {
-        labels: labels,
-        datasets: [
-            {
-                label: 'Post Titles',
-                data: {{ titles_data }},
-                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FF6384', '#36A2EB', '#FFCE56'],
-                hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FF6384', '#36A2EB', '#FFCE56']
-            },
-            {
-                label: 'Post Descriptions',
-                data: {{ descriptions_data }},
-                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FF6384', '#36A2EB', '#FFCE56'],
-                hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FF6384', '#36A2EB', '#FFCE56']
-            },
-            {
-                label: 'Comments',
-                data: {{ comments_data }},
-                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FF6384', '#36A2EB', '#FFCE56'],
-                hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FF6384', '#36A2EB', '#FFCE56']
+            </thead>
+            <tbody>
+                {% for result in results %}
+                    <tr>
+                        <td><a href="{{ result.url }}">{{ result.title }}</a></td>
+                        <td>{{ result.label }}</td>
+                        <td><a href="https://www.reddit.com/r/{{ result.subreddit }}">{{ result.subreddit }}</a></td>
+                        <td>{{ result.accuracy|floatformat:2 }}%</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="row">
+            <div class="col-md-4">
+                <canvas id="titlePieChart"></canvas>
+            </div>
+            <div class="col-md-4">
+                <canvas id="descriptionPieChart"></canvas>
+            </div>
+            <div class="col-md-4">
+                <canvas id="commentPieChart"></canvas>
+            </div>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            const labels = ["Banking Fraud", "Terrorist Attack", "Life Threat", "Online Scams", "Information Leakage", "Casual Conversation"];
+            const colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'];
+
+            function createPieChart(ctx, data) {
+                return new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: data,
+                            backgroundColor: colors,
+                            hoverBackgroundColor: colors
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                    }
+                });
             }
-        ]
-    };
 
-    const config = {
-        type: 'doughnut',
-        data: data,
-    };
-
-    var ctx = document.getElementById('myPieChart').getContext('2d');
-    new Chart(ctx, config);
-</script>
-
+            createPieChart(document.getElementById('titlePieChart').getContext('2d'), {{ titles_data }});
+            createPieChart(document.getElementById('descriptionPieChart').getContext('2d'), {{ descriptions_data }});
+            createPieChart(document.getElementById('commentPieChart').getContext('2d'), {{ comments_data }});
+        </script>
+    {% endif %}
 {% endblock %}
