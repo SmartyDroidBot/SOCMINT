@@ -88,7 +88,7 @@ def process_reddit_search(keywords, subreddit, limit, comment_limit, search_comm
         if label != "Casual Conversation":
             accuracy = title_prediction[0][label_index].item()
             post_data['label'] = label
-            post_data['accuracy'] = accuracy
+            post_data['accuracy'] = accuracy*100
         
             if check_descriptions:
                 description_chunks = split_text(submission.selftext)
